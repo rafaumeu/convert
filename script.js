@@ -6,10 +6,11 @@ const form = document.querySelector("form");
 const amount = document.getElementById("amount");
 const currency = document.getElementById("currency");
 const footer = document.querySelector("main footer");
+const description = document.getElementById("description");
 
 amount.addEventListener("input", () => {
-  const hasCharctersRegex = /\D+/g
-  amount.value = amount.value.replace(hasCharctersRegex, "");
+  const hasCharactersRegex = /\D+/g
+  amount.value = amount.value.replace(hasCharactersRegex, "");
 })
 
 form.onsubmit = (event) => {
@@ -29,10 +30,12 @@ form.onsubmit = (event) => {
 
 function convertCurrency (amount, price, symbol) {
   try {
+    description.textContent = `${symbol} 1 = ${price}`
     footer.classList.add("show-result")
+
   } catch (error) {
-    console.log(error)
     footer.classList.remove("show-result")
+    console.log(error)
     alert("Não foi possível converter. Tente novamente mais tarde.")	
   }
 }
