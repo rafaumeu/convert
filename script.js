@@ -33,7 +33,11 @@ function convertCurrency (amount, price, symbol) {
   try {
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
     let total = amount * price
-    result.textContent = `${formatCurrencyBRL(total)}`
+    if(isNaN(total)) {
+      return alert("Por favor, insira o valor corretamente para ser convertido.")
+    }
+    total = formatCurrencyBRL(total).replace("R$", "")
+    result.textContent = `${total} Reais`
     footer.classList.add("show-result")
 
   } catch (error) {
